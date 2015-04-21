@@ -1,6 +1,8 @@
+Authentication B:
+#addAuthorizationRestrictions: (addAuthorization)
+
 1) Functional Testing:
 ======
-#addAuthorizationRestrictions: (addAuthorization)
 
 The domain model for buzzAuthorization specifies that a restriction is made 
 for a particular user role on a specific buzz space.
@@ -26,6 +28,16 @@ conditions are met.
 ======
 
 ======
+Pre-conditions not specified, but that was needed for the system to work:
+These are however conditions that are met by this version of the service.
+*Specified buzz space should exist.
+*Specified role should be valid and exist.
+*The service should exist.
+*Minimum status points should be valid, being >= 0.
+*Service should be able to connect to database. 
+======
+
+======
 Post-conditions:
 *The restriction persisted, this condition is met when all the pre-conditions in 
 the service are met (those specified in the master spec and those that are not),
@@ -39,5 +51,3 @@ Scalability:
 Maintainability:
 Reliability:
 Usability:
-
-
