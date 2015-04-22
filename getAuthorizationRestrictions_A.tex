@@ -1,0 +1,55 @@
+\textbf{Description of use case:}\newline
+This use case is meant to be used by the front-end of the system in order to retrieve the authorization restrictions, so as to enable users to select an authorization restriction that they would like to update.
+\medskip
+
+\textbf{Violations:}
+\begin{enumerate}
+	\item Pre-conditions:
+	
+	\begin{itemize}
+		\item Space is active
+		\begin{itemize}
+				\item There is no explicit check as to whether this precondition is satisfied
+		\end{itemize}
+		\item User is Administrator of space for which authorization restrictions are queried
+		\begin{itemize}
+				\item There is no check to see if this precondition is satisfied
+		\end{itemize}
+	\end{itemize}
+	
+	\item Post-conditions:
+	\begin{itemize}
+		\item There were no post-conditions specified for this use case
+	\end{itemize}
+		
+\end{enumerate}
+
+\textbf{Successes:}
+\begin{itemize}
+	\item The appropriate data structures are used for each field of a class
+	\item The appropriate classes are created as specified by the class diagram in the requirements
+\end{itemize}
+
+
+\noindent
+\medskip
+
+\textbf{Further information on Group A's getAuthorizationRestrictions
+ use case:}
+\begin{itemize}
+	\item The use case accepts a GetAuthorizationRestrictionRequest, which requires the instantiation of 4 different classes that the request object is composed of.
+
+\item The implementation of this use case was done very simply, as it retrieves authorization restrictions by first checking if a particular module exists in the database and thereafter; the authorization restrictions are retrieved and returned a GetAuthorizationRestrictionResult as a JSON object.
+
+\item The implementation does not check for the instance where the minimum status points are set to zero and it is in this case that the role name of a user can be used to determine the Service Restriction. 
+
+\item If it was not possible to retrieve the authorization restrictions, as a result of a database error, then an error is simply logged onto the console screen, as no exceptions were required to have been thrown.
+
+\item There are no measures taken to ensure that the invariance constraint is met; therefore leaving the system in an inconsistent state.
+
+\end{itemize}
+
+
+
+
+
