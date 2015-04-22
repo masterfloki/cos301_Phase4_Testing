@@ -1,0 +1,35 @@
+
+2) Non-Functional testing/assesment.
+======
+Performance: 
+For both Authentication A and B the performance and execution speed will
+mainly be affected by the speed of the connection to the database, 
+because the actual execution of the function is almost instantaneous. Thus propogation
+is the only thing that can hamper performance.
+
+Scalability:
+In both cases the service is quite scalable, because there may be a limited amount of admins
+adding restrictions to buzz spaces at any moment in time.
+As well as there will only be a limited amount of buzz spaces that exist.
+
+Maintainability:
+It is maintainable to the sense that it can easily updated/changed independantly
+without effecting other authentication use cases.
+
+The main reason one would need to change this function is to accommodate 
+changes made in the structure of the database.
+
+Reliability:
+Authentication A: It is reliable to the point that only an admin can add a restriction,
+and also prevents duplicate restrictions.
+Authentication B: Is unreliable, because it doesn't test for admin rights, 
+but is reliable in the sense that it checks that all data that needs to be added to the
+database is valid.
+
+Usability:
+In both cases the use case conforms to usability, because in its essence 
+the use case has a simple purpose which is to add a non-existant restriction to the database.
+This change is always reflected in the database.
+However in case A instead of adding a new restriction, one is rather updated.
+
+
