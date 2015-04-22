@@ -1,0 +1,43 @@
+getAuthorization – Authorization B
+-------- Functional Testing -----------
+
+Violations:
+
+Pre-condition: User is administrator of space for which authorization restrictions are queried
+-	No validation is done to ensure the user querying the restrictions is an administrator.
+
+Post-condition: A GetAuthorizationRestrictionResult object should be returned by the function. Due to the asynchronous nature of Nodejs, the result of the function is undefined when called although the result is later available. The function returns before it has computed a result and no means to return the result synchronously is provided. Therefore this post-condition is violated.
+
+Data structure requirement: In the functional requirements specification a GetAuthorizationRestrictionRequest object is specified as a parameter to the getAuthorizationRestrictions function.
+The argument passed to GetAuthorizationRestriction in the implementation of Authorization B is a string containing a Buzzspace ID instead of a GetAuthorizationRestrictionRequest object. Therefore this is a datastructure requirement violation.
+
+Success:
+
+Pre-condition: Space is active
+Since the function only selects documents from the database where the delete parameter is false, this precondition is met
+
+------- Non-functional Testing --------
+
+Performance: 
+According to the Master Specification all reporting queries should return within less than 5 seconds. Testing using process.hrtime() yielded an average response time of 6.1 seconds. This is higher than the specified response time, but is probably mainly due to network roundtrip and is therefore negligible. Below are the test statistics for 10 runs:
+[ 9592, 994021295 ] - [ 9597, 587835792 ]
+[ 9628, 209683643 ] - [ 9631, 877555355 ]
+[ 9651, 81261321 ] - [ 9663, 612304297 ]
+[ 9680, 736498781 ] - [ 9691, 836866709 ]
+[ 9707, 518307119 ] - [ 9710, 817938678 ]
+[ 9719, 750913662 ] - [ 9725, 972172418 ]
+[ 9732, 821856061 ] - [ 9736, 631565362 ]
+[ 9751, 858734573 ] - [ 9760, 31820910 ]
+[ 9772, 859989737 ] - [ 9776, 316325849 ]
+[ 9787, 806663758 ] - [ 9791, 241438357 ]
+
+Scalability:
+
+Maintainability:
+The fact that the function defines a database model for servicerestrictions itself, lowers maintainability in the sense that it does not make use of a shared database model used by the entire Authorization module. Changes to the model would have to be done in this function and every other function where defined instead of in a globally shared location. This is also the case for the manner in which the function establishes database connectivity. If the ip-address for the database is changed, it will have to be modified in the function itself instead of in a global location shared among the entire module.
+Code clarity and the use of comments will however enhance the ease with which future developers might understand and change the function.
+
+Reliability:
+Due to the asynchronous nature of nodejs the getAuthorizationRestrictions function returns before a result could be computed. The result of the function is therefore undefined to the caller, even though the result is later made available. No means is provided to obtain this result synchronously. The function violates the reliability quality requirement since it does not return a result in the expected manner.
+
+Usability:
