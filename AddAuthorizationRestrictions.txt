@@ -1,0 +1,87 @@
+#addAuthorizationRestrictions: (addAuthorization)
+1) Functional Testing:
+======
+Description:
+
+The domain model for buzzAuthorization specifies that a restriction is made 
+for a particular user role on a specific buzz space.
+This is not the case in Authentication A and B's addAuthorizationRestrictions,
+Authentication A: A restriction is not added, but updated according to the role and buzz space. 
+Authentication B: A Restriction is instead added to a specific service on a buzzSpace with a
+role and minimum status points.
+
+The Restriction constists of a buzzSpace,role,serviceID and 
+minimumStatusPoints which adheres to the specification.
+
+======
+Pre-conditions:
+*User adding the restriction has admin rights
+Authentication A: This condition was met, because it tests for the admin rights
+in the updateAuthorizationRestriction which was called in this function.
+Authentication B: This was not met in
+this service, because the service doesn't test for the condition at all.
+
+*The restriction does not yet exist
+Authentication A: This condition is not met according to the master spec, 
+because if the restriction exists it updates the restriction. 
+Authentication B: This pre-condition is met in the service
+it tests if the restriction exists and if so an appropriate exception is thrown,
+if not then the restriction specified is added/persisted to the database after a few 
+conditions are met.
+
+======
+Post-conditions:
+*The restriction persisted
+Authentication A: The condition isn't met, because it throws an exception
+when the restriction doesn't exist. This is because it calls the update method 
+which requires the restrictions to already exist.
+Authentication B: This condition is met when all the pre-conditions in 
+the service are met (those specified in the master spec and those that are not),
+then the restriction is persisted to the database.
+======
+
+Authentication B extra pre-conditions:
+======
+Pre-conditions not specified, but that was needed for the system to work:
+These are however conditions that are met by this version of the use case.
+*Specified buzz space should exist.
+*Specified role should be valid and exist.
+*The service should exist.
+*Minimum status points should be valid, being >= 0.
+*Service should be able to connect to database. 
+======
+
+2) Non-Functional testing/assesment.
+======
+Performance: 
+For both Authentication A and B the performance and execution speed will
+mainly be affected by the speed of the connection to the database, 
+because the actual execution of the function is almost instantaneous. Thus propogation
+is the only thing that can hamper performance.
+
+Scalability:
+In both cases the service is quite scalable, because there may be a limited amount of admins
+adding restrictions to buzz spaces at any moment in time.
+As well as there will only be a limited amount of buzz spaces that exist.
+
+Maintainability:
+It is maintainable to the sense that it can easily updated/changed independantly
+without effecting other authentication use cases.
+
+The main reason one would need to change this function is to accommodate 
+changes made in the structure of the database.
+
+Reliability:
+Authentication A: It is reliable to the point that only an admin can add a restriction,
+and also prevents duplicate restrictions.
+Authentication B: Is unreliable, because it doesn't test for admin rights, 
+but is reliable in the sense that it checks that all data that needs to be added to the
+database is valid.
+
+Usability:
+In both cases the use case conforms to usability, because in its essence 
+the use case has a simple purpose which is to add a non-existant restriction to the database.
+This change is always reflected in the database.
+However in case A instead of adding a new restriction, one is rather updated.
+
+
