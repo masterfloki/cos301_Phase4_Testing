@@ -1,0 +1,26 @@
+\textbf{Description of use case:}\newline
+This use case is meant to customize the user interface by querying the services the user may access.
+\medskip
+
+\noindent
+The following test cases were tested on the isAuthorized use case:
+\begin{enumerate}
+	\item User's status points are greater than the service's minimum status points.
+	\item User's status points are less than the service's minimum status points.
+	\item User does not exist.
+  	\item Service does not exit.
+  	\item Buzz Space is not active.
+  	\item Buzz Space does not exist.
+\end{enumerate}
+\medskip
+\noindent
+\textbf{Group A's isAuthorized use case results:}\newline
+The function takes in a isAuthorizedRequest object as a argument and returns a isAuthorizedResult if all pre- and post- conditions were met.\newline
+Passed the following test cases: 1, 2 and 4.\newline
+Failed the following test cases: 3, 5 and 6.\newline
+When testing isAuthorized with a inactive space a isAuthorizedResult with a boolean value true was returned, this is incorrect as it should have thrown a SpaceNotActive exception. The pre-condition, space is active, was violated.
+\medskip
+
+\noindent
+\textbf{Group B's isAuthorized use case results:}\newline
+The function did not follow the master specification and could not be tested as it was very difficult to determine the correct argument(s) to pass through when calling isAuthorized. 
