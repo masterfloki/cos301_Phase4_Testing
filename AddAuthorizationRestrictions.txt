@@ -2,10 +2,9 @@
 1) Functional Testing:
 ======
 Description:
-
 The domain model for buzzAuthorization specifies that a restriction is made 
 for a particular user role on a specific buzz space.
-This is not the case in Authentication A and B's addAuthorizationRestrictions,
+This is not the case in Authentication A and B's addAuthorizationRestrictions:
 Authentication A: A restriction is not added, but updated according to the role and buzz space. 
 Authentication B: A Restriction is instead added to a specific service on a buzzSpace with a
 role and minimum status points.
@@ -48,7 +47,7 @@ These are however conditions that are met by this version of the use case.
 *Specified role should be valid and exist.
 *The service should exist.
 *Minimum status points should be valid, being >= 0.
-*Service should be able to connect to database. 
+*Usecase should be able to connect to database. 
 ======
 
 2) Non-Functional testing/assesment.

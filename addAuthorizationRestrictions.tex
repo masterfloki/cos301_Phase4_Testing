@@ -1,0 +1,78 @@
+
+\textbf{Description of use case:}\newline
+\par{The domain model for buzzAuthorization specifies that a restriction is made for a particular user role on a specific buzz space.
+
+This is not the case in Authentication A and B's addAuthorizationRestrictions:}
+
+\begin{itemize}
+\item Authentication A: A restriction is not added, but updated according to the role and buzz space. 
+\item Authentication B: A Restriction is instead added to a specific service on a buzzSpace with a role and minimum status points.
+\end{itemize}
+\medskip
+
+\textbf{Functional testing/assesment Success or Violations:}
+\begin{enumerate}
+	\item Pre-conditions:
+	
+	\begin{itemize}
+		\item User adding the restriction has admin rights:
+		\begin{itemize}
+				\item Authentication A: This condition was met, because it tests for the admin rights in the updateAuthorizationRestriction which was called in this use case.
+				\item Authentication B: This was not met in
+this usecase, because the service doesn't test for the condition at all.
+		\end{itemize}
+		\item The restriction does not yet exist:
+		\begin{itemize}
+				\item Authentication A: This condition is not met according to the master spec, because if the restriction exists it updates the restriction. 
+				\item Authentication B: This pre-condition is met in the service
+it tests if the restriction exists and if so an appropriate exception is thrown,
+if not then the restriction specified is added/persisted to the database after a few conditions are met.
+		\end{itemize}
+	\end{itemize}
+
+	\item Post-conditions:
+	\begin{itemize}
+		\item The restriction persisted:
+			\begin{itemize}
+			\item Authentication A: The condition isn't met, because it throws an exception when the restriction doesn't exist. This is because it calls the update method which requires the restrictions to already exist.
+			\item Authentication B: This condition is met when all the pre-conditions in the usecase are met (those specified in the master spec and those that are not), then the restriction is persisted to the database.				
+			\end{itemize}
+			
+	\end{itemize}
+		
+\end{enumerate}
+
+\noindent
+\medskip
+
+\textbf{Further information on addAuthorizationRestrictions use case:}
+\begin{itemize}
+	\item	Pre-conditions found in the usecase of team-B that wasn't specified:
+	\textnormal{Although not specified, they are needed for the usecase to work.}
+		\begin{itemize}
+		\item Specified buzz space should exist.  
+		\item Specified role should be valid and exist.
+		\item The service should exist.
+		\item Minimum status points should be valid, being >= 0.
+		\item Usecase should be able to connect to database. 
+		\end{itemize}
+	\item The use case of team-A takes in 1 argument:
+		\begin{itemize}
+		\item The argument is an object containing all the fields that need to be added to the restriction.
+		
+		\end{itemize}
+	\item The use case of team-B takes in 4 arguments:
+		\begin{itemize}
+		\item The buzz space ID.
+		\item The service's ID.
+		\item A role.
+		\item A minimum status points		
+		\end{itemize}
+	  
+
+\end{itemize}
+
+
+
+
+
