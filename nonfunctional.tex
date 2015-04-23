@@ -5,6 +5,7 @@
 \subsection{Performance:}
 
 \subsection{Reliability and Availability:}
+Many functions in the implementation of the use-cases for Authentication B returns the correct result objects, but does not provide a synchronous way to access these returned objects. These functions reach a return statement before a database query is completed and therefore returns an undefined result, which is not at all reliable, since the function is useless if its result cannot be accessed.
 
 \subsection{Security:}
 In certain implementations of both  Group A and B, the system was made vulnerable, in that, checks for whether a user is an administrator were not done. This would allow any user, authorized or not, to access, remove or edit the authorization restrictions.
@@ -17,5 +18,6 @@ The authentication module from both group A and B do not meet the auditability r
 \subsection{Usability:}
 
 \subsection{Integrability:}
+All functions/use-cases of Authentication B is exported into a NodeJS module which enhances integrability into other modules.
 
 \subsection{Deployability:}
