@@ -1,5 +1,5 @@
 \textbf{Description of use case:}\newline
-This use case is meant to customize the user interface by querying the services the user may access.
+This use case is meant to customize the user interface by querying the services the user may access. The service contract for the isAuthorized use case specifies that isAuthorized is called with a isAuthorizedRequest and returns a isAuthorizedResult which contains a boolean value that indicates whether the user is authorized to use a particular service. isAuthorized has only one pre-condition and that is the space, the user is on, be active(open). A SpaceNotActiveException must be thrown if the pre-condition was violated.
 \medskip
 
 \noindent
@@ -15,7 +15,6 @@ The following test cases were tested on the isAuthorized use case:
 \medskip
 \noindent
 \textbf{Group A's isAuthorized use case results:}\newline
-The function takes in a isAuthorizedRequest object as an argument and returns a isAuthorizedResult if all pre- and post- conditions were met.\newline
 Passed the following test cases: 1, 2 and 4.\newline
 Failed the following test cases: 3, 5 and 6.\newline
 When testing isAuthorized with an inactive space a isAuthorizedResult with a boolean value true was returned, this is incorrect as it should have thrown a SpaceNotActive exception. The pre-condition, space is active, was violated.
@@ -23,4 +22,4 @@ When testing isAuthorized with an inactive space a isAuthorizedResult with a boo
 
 \noindent
 \textbf{Group B's isAuthorized use case results:}\newline
-The function did not follow the master specification and could not be tested as it was very difficult to determine the correct argument(s) to pass through when calling isAuthorized. 
+Could not test group B's isAuthorized use case as the master specification was not followed. Multiple arguments were required to call isAuthorized. Determining the correct required arguments to pass through could not be done because the master specification was not followed.
