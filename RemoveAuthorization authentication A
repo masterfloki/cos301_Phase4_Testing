@@ -1,0 +1,22 @@
+Authentication A Results
+
+The removeAuthorizationRestriction function from Authentication A meets
+the data structure requirements as stipulated in the requirements document.
+
+The removeAuthorizationRestriction function, however, violates the pre-condition
+requirement stipulated in the service contract.
+
+	"Pre-Condition: Has administrator role"
+
+No checks are performed to get the role of the user performing these changes and hence
+the pre-condition requirements have not been met.
+
+The post-condition, as stipulated in the service contract, will only be met upon successful execution 
+of the updateAuthorizationRestriction function as its the last step performed in removing an AuthorizationRestriction
+
+**The removeAuthorizationRestriction function also has a dependency on the updateAuthorizationRestriction function
+and hence it's success depends on the updateAuthorizationRestricition function being in a correct working state and
+meeting the requirements as stipulated in the service contract.
+
+**The function will have a maintainability problem because changes to the updateAuthorizationRestriction function 
+might have an adverse effect on the correct performance of this function.
