@@ -14,7 +14,7 @@ the pre-condition requirements have not been met.
 The post-condition, as stipulated in the service contract, will only be met upon successful execution 
 of the updateAuthorizationRestriction function as its the last step performed in removing an AuthorizationRestriction
 
-**The removeAuthorizationRestriction function also has a dependency on the updateAuthorizationRestriction function
+**The removeAuthorizationRestriction function has a dependency on the updateAuthorizationRestriction function
 and hence it's success depends on the updateAuthorizationRestricition function being in a correct working state and
 meeting the requirements as stipulated in the service contract.
 
