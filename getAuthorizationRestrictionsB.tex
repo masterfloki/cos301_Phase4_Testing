@@ -1,0 +1,77 @@
+
+
+\textbf{The following concerns Group B's getAuthorizationRestrictions use case:}\newline
+
+
+\textbf{Violations:}
+\begin{enumerate}
+	\item Pre-conditions:	
+	\begin{itemize}
+		\item User is Administrator of space for which authorization restrictions are queried
+		\begin{itemize}
+				\item No validation is done to ensure the user querying the restrictions is an administrator
+		\end{itemize}
+	\end{itemize}
+	
+	\item Post-conditions:
+	\begin{itemize}
+		\item  A GetAuthorizationRestrictionResult object should be returned by the function. 
+		\begin{itemize}
+				\item Due to the asynchronous nature of Nodejs, the result of the function is undefined when called although the result is later available. The function returns before it has computed a result and no means to return the result synchronously is provided. Therefore this post-condition is violated.
+		\end{itemize}
+	\end{itemize}
+	
+	\item Data structure requirement:
+	\begin{itemize}
+		\item  A GetAuthorizationRestrictionResult object should be returned by the function. 
+		\begin{itemize}
+				\item The argument passed to GetAuthorizationRestriction in the implementation of Authorization B is a string containing a Buzzspace ID instead of a GetAuthorizationRestrictionRequest object. Therefore this is a datastructure requirement violation.
+		\end{itemize}
+	\end{itemize}
+		
+\end{enumerate}
+
+\textbf{Successes:}
+\begin{enumerate}
+	\item Pre-conditions:	
+	\begin{itemize}
+		\item Space is active
+		\begin{itemize}
+				\item The function only selects documents from the database where the delete parameter is false to indicate the space is active.
+		\end{itemize}
+	\end{itemize}	
+\end{enumerate}
+
+
+\noindent
+\medskip
+
+\textbf{Further information on the use case:}
+\noindent
+
+The following test cases were tested on the getAuthorizationRestrictions use case:
+\begin{enumerate}
+	\item User's status points are greater than the service's minimum status points.
+	\item User's status points are less than the service's minimum status points.
+	\item User does not exist.
+  	\item Service does not exist.
+  	\item Buzz Space is not active.
+  	\item Buzz Space does not exist.
+  	\item User is Administrator for Buzz Space.
+\end{enumerate}
+\medskip
+\begin{itemize}
+\item The following test cases passed:  5 and 6.
+	
+\item The following test cases failed: 1, 2, 3, 4 and 7.
+	\begin{itemize}
+		\item No means is provided to even identify the user of this use-case. Status points of the user can therefore not be compared to the service's minimum status points.
+		\item No validation is made to check that the current user actually exists
+		\item No validation is made to ensure that the user is an administrator, since no means of even identifying the use-case user is provided.
+	\end{itemize}
+
+	\item An implementation summary of the use case is as follows: A restriction is found according to a Buzzspace id provided as an argument to the function. If the space does not exist or is not active a Buzzspace Error exception is thrown. If the space does exist and is active, the restriction objects is returned in the format of its database entry as a JSON. This is however only visible when printed to the console from within the implementation, due to the asynchronous nature of NodeJS.
+
+\item If connection with the database cannot be established a Connection Error exception is thrown.
+
+\end{itemize}
