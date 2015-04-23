@@ -1,0 +1,27 @@
+\textbf{Description of use case:}\newline
+This is a simple use case which removes an authorization restriction for a user role from a buzz space.
+
+
+\medskip
+
+\noindent
+Test cases for removeAuthorization:
+\begin{enumerate}
+	\item User can access Buzz Space.
+	\item User enters appropriate parameters and recieves approriate response
+	\item User with a certain role can remove authorization.
+
+\end{enumerate}
+
+\noindent
+\textbf{Authentication B results}\newline
+Violation of the contract requirements(pre-conditions):
+\begin{itemize}
+	\item removeAuthorizationRestrictionRequest parameter object - Contract requirements indicate that the function needs to accept and a removeAuthorizationRestrictionRequest object. The implemented function violates the contract by using a string argument that contains the userId.
+
+\end{itemize}
+
+Violation of the contract requirements(post-conditions):
+\begin{itemize}
+	\item The function is supposed to return removeAuthorizationRestrictionResult object after the removal of the specified restriction but the implmemented code only returns an empty object.
+\end{itemize} 
