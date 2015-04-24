@@ -15,13 +15,37 @@ Test cases for removeAuthorization:
 
 \noindent
 \textbf{Authentication B results}\newline
-Violation of the contract requirements(pre-conditions):
+Success/Violation of the contract requirements(pre-conditions):
 \begin{itemize}
-	\item removeAuthorizationRestrictionRequest parameter object - Contract requirements indicate that the function needs to accept and a removeAuthorizationRestrictionRequest object. The implemented function violates the contract by using a string argument that contains the userId.
-
+	\item removeAuthorization is able to establish a connection to the database to obtain the necessary details for a particular user.
 \end{itemize}
 
+\noindent
+Success/Violation of the contract requirements(post-conditions):
+\begin{itemize}
+	\item The function can successfully apply the remove restriction by evaluating the role of a user. If the user does not have the certain role required they are simple declined access to the functionality.
+\end{itemize} 
+
+\noindent
 Violation of the contract requirements(post-conditions):
 \begin{itemize}
-	\item The function is supposed to return removeAuthorizationRestrictionResult object after the removal of the specified restriction but the implmemented code only returns an empty object.
+	\item When a user is declined access from removing a restriction, a message is return indicating that the user does not have the rights to perform such an operation. This meets the contract requirements.
+\end{itemize}
+
+\noindent
+Data Structure Success/Violation:
+\begin{itemize}
+	\item The input parameter in the contract requirements requires the object removeAuthorizationRestrictionRequest be passed to the function which encapsulates the userId. The implemented function violates the requirements by passing a string that contains the userId.
+	\item The function is supposed to return removeAuthorizationRestrictionResult object after the removal of the specified restriction but the implmemented code only returns an empty object which voilates the requirements.
 \end{itemize} 
+
+
+
+
+
+
+
+
+
+
+
