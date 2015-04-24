@@ -8,7 +8,9 @@ Seemingly on average in both cases the functions used in both systems A and B, h
 \subsection{Performance:}
 
 \subsection{Reliability and Availability:}
-Many functions in the implementation of the use-cases for Authentication B returns the correct result objects, but does not provide a synchronous way to access these returned objects. These functions reach a return statement before a database query is completed and therefore returns an undefined result, which is not at all reliable, since the function is useless if its result cannot be accessed.
+Many functions in the implementation of the use-cases for Authentication B returns the correct result objects, but does not provide a synchronous way to access these returned objects. These functions reach a return statement before a database query is completed and therefore returns an undefined result, which is not at all reliable, since the function is useless if its result cannot be accessed. 
+The implementations of the use-cases for Authentication A provides functionality to return results synchronously.
+A single point of failure and availability violation for both modules is the connection with the database. In the highly unlikely event that this fails, results cannot be computed. Authentication B handles this relatively well for most use-case implementations by throwing exceptions to alert the caller that database connection caused the function to fail. There are however a few use-case implementations for which this was not provided. Authentication A provides no explicit means to detect a connection problem or to alert the caller if one occurs.
 
 \subsection{Security:}
 In certain implementations of both  Group A and B, the system was made vulnerable, in that, checks for whether a user is an administrator were not done. This would allow any user, authorized or not, to access, remove or edit the authorization restrictions.
@@ -39,6 +41,7 @@ module is done in a restricted manner so as to guide the user (admin) of this mo
 makes it easy and simple to use.
 
 \subsection{Integrability:}
-All functions/use-cases of Authentication B is exported into a NodeJS module which enhances integrability into other modules.
+All functions/use-case implementations of Authentication B is exported into a NodeJS module which enhances integrability into other modules.
+The functions/use-case implementations of Authentication A is not exported into a module which can easily be integrated into other modules. This makes integrability tedious and difficult, since code will have to be copied to be used.
 
 \subsection{Deployability:}
