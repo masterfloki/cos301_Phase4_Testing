@@ -1,32 +1,31 @@
 
 \textbf{Description of use case:}\newline
-\par{The domain model for buzzAuthorization specifies that a restriction is made for a particular user role on a specific buzz space.
+The domain model for buzzAuthorization specifies that a restriction is made for a particular user role on a specific buzz space.
+\medskip
 
-This is not the case in Authentication A and B's addAuthorizationRestrictions:}
-
+\noindent
+This is not the case in Authentication A and B's addAuthorizationRestrictions:
 \begin{itemize}
 \item Authentication A: A restriction is not added, but updated according to the role and buzz space. 
-\item Authentication B: A Restriction is instead added to a specific service on a buzzSpace with a role and minimum status points.
+\item Authentication B: A restriction is  added to a specific service on a buzzSpace with a role and minimum status points.
 \end{itemize}
 \medskip
 
-\textbf{Functional testing/assesment Success or Violations:}
+\noindent
+\textbf{Functional testing/assessment Success or Violations:}
 \begin{enumerate}
 	\item Pre-conditions:
 	
 	\begin{itemize}
 		\item User adding the restriction has admin rights:
 		\begin{itemize}
-				\item Authentication A: This condition was met, because it tests for the admin rights in the updateAuthorizationRestriction which was called in this use case.
-				\item Authentication B: This was not met in
-this use case, because the service doesn't test for the condition at all.
+				\item Authentication A: This condition was met, because it tests for the administrator rights in the updateAuthorizationRestriction which was called in this use case.
+				\item Authentication B: This was not met in this use case, because the service doesn't test for the condition at all.
 		\end{itemize}
 		\item The restriction does not yet exist:
 		\begin{itemize}
-				\item Authentication A: This condition is not met according to the master spec, because if the restriction exists it updates the restriction. 
-				\item Authentication B: This pre-condition is met in the service;
-it tests if the restriction exists and if so an appropriate exception is thrown,
-if not then the restriction specified is added/persisted to the database after a few conditions are met.
+				\item Authentication A: This condition is not met according to the master specification, because if the restriction exists it updates the restriction. 
+				\item Authentication B: This condition is met in the service; it tests if the restriction exists and if so an appropriate exception is thrown, if not then the restriction specified is added/persisted to the database after a few conditions are met.
 		\end{itemize}
 	\end{itemize}
 
@@ -41,20 +40,19 @@ if not then the restriction specified is added/persisted to the database after a
 	\end{itemize}
 		
 \end{enumerate}
-
-\noindent
 \medskip
 
+\noindent
 \textbf{Further information on addAuthorizationRestrictions use case:}
 \begin{itemize}
-	\item	Pre-conditions found in the usecase of team-B that wasn't specified:
-	\textnormal{Although not specified, they are needed for the usecase to work.}
+	\item	Pre-conditions found in the use case of team-B that were not specified:
+	\textnormal{Although not specified, they are needed for the use case to work.}
 		\begin{itemize}
 		\item Specified buzz space should exist.  
 		\item Specified role should be valid and exist.
 		\item The service should exist.
 		\item Minimum status points should be valid, being >= 0.
-		\item Usecase should be able to connect to database. 
+		\item Use case should be able to connect to database. 
 		\end{itemize}
 	\item The use case of team-A takes in 1 argument:
 		\begin{itemize}

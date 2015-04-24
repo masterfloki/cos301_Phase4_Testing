@@ -1,32 +1,51 @@
+\textbf{Description of use case:}\newline
+This is a simple use case which removes an authorization restriction for a user role from a buzz space.
+\medskip
+
+\noindent
+Test cases for removeAuthorization:
+\begin{enumerate}
+	\item User can access Buzz Space.
+	\item User enters appropriate parameters and recieves approriate response
+	\item User with a certain role can remove authorization.
+\end{enumerate}
+
+\noindent
+\textbf{Authentication A Results:} \newline
+\noindent
+The removeAuthorizationRestriction function from Authentication A meets the data structure requirements as stipulated in the requirements document.
+
+\begin{itemize}
+\item The removeAuthorizationRestriction function, however, violates the pre-condition requirement stipulated in the service contract.
+
+  "Pre-Condition: Has administrator role"
+
+No checks are performed to get the role of the user performing these changes and hence
+the pre-condition requirements have not been met.
+
+\item The post-condition, as stipulated in the service contract, will only be met upon successful execution of the updateAuthorizationRestriction function as its the last step performed in removing an AuthorizationRestriction. The removeAuthorizationRestriction function has a dependency on the updateAuthorizationRestriction function and hence it's success depends on the updateAuthorizationRestricition function being in a correct working state and meeting the requirements as stipulated in the service contract.
+
+\item The function will have a maintainability problem because changes to the updateAuthorizationRestriction function 
+might have an adverse effect on the correct performance of this function.
+\end{itemize}
+
 \noindent
 \textbf{Authentication B results}\newline
-Success/Violation of the contract requirements(pre-conditions):
-\begin{itemize}
-	\item removeAuthorization is able to establish a connection to the database to obtain the necessary details for a particular user.
-\end{itemize}
 
-\noindent
-Success/Violation of the contract requirements(post-conditions):
 \begin{itemize}
-	\item The function can successfully apply the remove restriction by evaluating the role of a user. If the user does not have the certain role required they are simple declined access to the functionality.
-\end{itemize} 
+	\item Success/Violation of the contract requirements(pre-conditions): removeAuthorization is able to establish a connection to the database to obtain the necessary details for a particular user.
 
-\noindent
-Violation of the contract requirements(post-conditions):
-\begin{itemize}
-	\item When a user is declined access from removing a restriction, a message is return indicating that the user does not have the rights to perform such an operation. This meets the contract requirements.
-\end{itemize}
 
-\noindent
-Data Structure Success/Violation:
-\begin{itemize}
-	\item The input parameter in the contract requirements requires the object removeAuthorizationRestrictionRequest be passed to the function which encapsulates the userId. The implemented function violates the requirements by passing a string that contains the userId.
+	\item Success/Violation of the contract requirements(post-conditions): The function can successfully apply the remove restriction by evaluating the role of a user. If the user does not have the certain role required they are simple declined access to the functionality.
+
+
+	\item Violation of the contract requirements(post-conditions): When a user is declined access from removing a restriction, a message is return indicating that the user does not have the rights to perform such an operation. This meets the contract requirements.
+
+
+
+	\item Data Structure Success/Violation: The input parameter in the contract requirements requires the object removeAuthorizationRestrictionRequest be passed to the function which encapsulates the userId. The implemented function violates the requirements by passing a string that contains the userId.
 	\item The function is supposed to return removeAuthorizationRestrictionResult object after the removal of the specified restriction but the implemented code only returns an empty object which violates the requirements.
 \end{itemize} 
-
-
-
-
 
 
 
