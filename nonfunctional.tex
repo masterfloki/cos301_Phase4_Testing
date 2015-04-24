@@ -14,6 +14,7 @@ In certain implementations of both  Group A and B, the system was made vulnerabl
 The authentication module from both group A and B do not meet the auditability requirement. No attempt was made to write to log files when any of the services were requested.
 
 \subsection{Testability:}
+Authentication A includes all its testing implementation inside the app.js file and does not use unit.js to for its unit tests.  
 Authentication module for B has a test file but does not make any use of any unit test using unit.js. The test file contains heavily commented out code but when all the test code is uncommented out, majority of the code generates errors and some tests generate inconclusive results such as returning empty objects. With consideration of such factors, Authentication B module does not meet the requirements for testability and violates the quality testability requirement by not implementing the appropriate unit testing using unit.js.
 
 \subsection{Usability:}
