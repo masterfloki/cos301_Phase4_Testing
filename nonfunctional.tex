@@ -16,6 +16,22 @@ The authentication module from both group A and B do not meet the auditability r
 \subsection{Testability:}
 
 \subsection{Usability:}
+The Authorization module meets the usability requirement because it consists
+of methods that are easy to use in any part of the buzz system.
+The "require" feature of nodeJS allows for effortless inclusion of the Authorization 
+module, again this allows for easy integration with other modules.
+The parameters of the methods in Authentication B are simple and straightforward and thus
+quickly understood and implemented. The same applies to the methods in Authentication A, 
+which only takes in RestrictionRequests as parameters, this prevents confusion and potential
+errors due to mixed up parameters. 
+The users of the buzz space don't come face to face with the backend of Authentication and as 
+such are not considered in the usability of this module. However, the methods in this module
+(Authentication A and B) do return clear and comprehensive results such as objects and exceptions. 
+These results are in turn handled by other modules that interact with the users, so Authorization 
+is indirectly quite usable to the extent that it can perform optimally through other modules.
+The pre-conditions and post-conditions in both Authentication A and B ensure that the use of this 
+module is done in a restricted manner so as to guide the user (admin) of this module, this again
+makes it easy and simple to use.
 
 \subsection{Integrability:}
 All functions/use-cases of Authentication B is exported into a NodeJS module which enhances integrability into other modules.
