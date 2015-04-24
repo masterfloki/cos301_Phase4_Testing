@@ -19,12 +19,12 @@ This is not the case in Authentication A and B's addAuthorizationRestrictions:}
 		\begin{itemize}
 				\item Authentication A: This condition was met, because it tests for the admin rights in the updateAuthorizationRestriction which was called in this use case.
 				\item Authentication B: This was not met in
-this usecase, because the service doesn't test for the condition at all.
+this use case, because the service doesn't test for the condition at all.
 		\end{itemize}
 		\item The restriction does not yet exist:
 		\begin{itemize}
 				\item Authentication A: This condition is not met according to the master spec, because if the restriction exists it updates the restriction. 
-				\item Authentication B: This pre-condition is met in the service
+				\item Authentication B: This pre-condition is met in the service;
 it tests if the restriction exists and if so an appropriate exception is thrown,
 if not then the restriction specified is added/persisted to the database after a few conditions are met.
 		\end{itemize}
@@ -35,7 +35,7 @@ if not then the restriction specified is added/persisted to the database after a
 		\item The restriction persisted:
 			\begin{itemize}
 			\item Authentication A: The condition isn't met, because it throws an exception when the restriction doesn't exist. This is because it calls the update method which requires the restrictions to already exist.
-			\item Authentication B: This condition is met when all the pre-conditions in the usecase are met (those specified in the master spec and those that are not), then the restriction is persisted to the database.				
+			\item Authentication B: This condition is met when all the pre-conditions in the use case are met (those specified in the master specification and those that are not), then the restriction is persisted to the database.				
 			\end{itemize}
 			
 	\end{itemize}

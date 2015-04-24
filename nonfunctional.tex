@@ -1,6 +1,6 @@
 \subsection{Maintainability:}
-A's system is set out in a way that it would be easy to maintain if you have an idea of the systematic outlay of the code and if you have full understanding of the technologies used in the system. The documentation seemingly was more aimed at the team who implemented it instead of at future teams who might need to update it. Some comments are vague in the sense of a person who is trying to understand the code and does not yet have the bigger picture in mind, will not necessarily make sense of the code at first glance. Also not all the sections were documented probably.
-B's system has more sufficient documentation, but it was not done through out the whole system. It would be easy to understand the implementation where it was documented and the system as a whole makes sense, but where the system was not documented properly, if you do not understand the system as a whole, you will not understand the code at first glance. 
+A's system is set out in a way that it would be easy to maintain if you have an idea of the systematic outline of the code and if you have full understanding of the technologies used in the system. The documentation seemingly was more aimed at the team who implemented it instead of at future teams who might need to update it. Some comments are vague in the sense of a person who is trying to understand the code and does not yet have the bigger picture in mind, will not necessarily make sense of the code at first glance. Also not all the sections were documented probably.
+B's system has more sufficient documentation, but it was not done throughout the whole system. It would be easy to understand the implementation where it was documented and the system as a whole makes sense, but where the system was not documented properly, if you do not understand the system as a whole, you will not understand the code at first glance. 
 
 \subsection{Scalability:}
 Seemingly on average in both cases the functions used in both systems A and B, have complexities that seemingly average to only log(n), hence it follows that these systems should scale well enough to accommodate the increase of users in this specific subsystem. 
@@ -8,7 +8,7 @@ Seemingly on average in both cases the functions used in both systems A and B, h
 \subsection{Performance:}
 
 \subsection{Reliability and Availability:}
-Many functions in the implementation of the use-cases for Authentication B returns the correct result objects, but does not provide a synchronous way to access these returned objects. These functions reach a return statement before a database query is completed and therefore returns an undefined result, which is not at all reliable, since the function is useless if its result cannot be accessed. 
+Many functions in the implementation of the use cases for Authentication B returns the correct result objects, but does not provide a synchronous way to access these returned objects. These functions reach a return statement before a database query is completed and therefore returns an undefined result, which is not at all reliable, since the function is useless if its result cannot be accessed. 
 The implementations of the use-cases for Authentication A provides functionality to return results synchronously.
 A single point of failure and availability violation for both modules is the connection with the database. In the highly unlikely event that this fails, results cannot be computed. Authentication B handles this relatively well for most use-case implementations by throwing exceptions to alert the caller that database connection caused the function to fail. There are however a few use-case implementations for which this was not provided. Authentication A provides no explicit means to detect a connection problem or to alert the caller if one occurs.
 
@@ -31,7 +31,7 @@ The parameters of the methods in Authentication B are simple and straightforward
 quickly understood and implemented. The same applies to the methods in Authentication A, 
 which only takes in RestrictionRequests as parameters, this prevents confusion and potential
 errors due to mixed up parameters. 
-The users of the buzz space don't come face to face with the backend of Authentication and as 
+The users of the buzz space don't come face to face with the back-end of Authentication and as 
 such are not considered in the usability of this module. However, the methods in this module
 (Authentication A and B) do return clear and comprehensive results such as objects and exceptions. 
 These results are in turn handled by other modules that interact with the users, so Authorization 
@@ -42,6 +42,6 @@ makes it easy and simple to use.
 
 \subsection{Integrability:}
 All functions/use-case implementations of Authentication B is exported into a NodeJS module which enhances integrability into other modules.
-The functions/use-case implementations of Authentication A is not exported into a module which can easily be integrated into other modules. This makes integrability tedious and difficult, since code will have to be copied to be used.
+The functions/use-case implementations of Authentication A is not exported into a module. This makes integrability tedious and difficult, since code will have to be copied to be used.
 
 \subsection{Deployability:}
